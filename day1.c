@@ -45,6 +45,8 @@ int main(void) {
 
   int sum = 0;
 
+  int similarity_score = 0;
+
   int num_lines = count_lines(filename);
   if (num_lines == -1) {
     printf("Error: Could not open file\n");
@@ -86,6 +88,19 @@ int main(void) {
     }
 
     printf("%d\n", sum);
+
+    for (int i = 0; i < num_lines; i++) {
+      int times = 0;
+      for (int j = 0; j < num_lines; j++) {
+        if (left_array[i] == right_array[j]) {
+          times++;
+        }
+      }
+      int initial_score = times * left_array[i];
+      similarity_score += initial_score;
+    }
+
+    printf("%d\n", similarity_score);
   }
   return 0;
 }
